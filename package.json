@@ -42,7 +42,7 @@
     "@popperjs/core": "^2.11.8",
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
-    "i18next": "^23.16.0",
+    "i18next": "^23.16.8",
     "nanoid": "^5.0.9",
     "normalize.css": "^8.0.1",
     "on-change": "^5.0.1",

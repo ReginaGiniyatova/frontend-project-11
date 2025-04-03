@@ -1,48 +1,46 @@
+import onChange from 'on-change';
+import { handleValidateFailed, handleValidateSuccess, runStartRender } from './watchers.js';
 import { object, string } from 'yup';
+import i18next from 'i18next';
+import resources from './localization/languages.js';
 
 const urlSchema = object({
     url: string().required().url()
 })
 
-const arr = []
-const form = document.querySelector('#form');
-const errorMessage = document.querySelector('#error_message')
+function runApp() {
+  const i18nInstance = i18next.createInstance();
 
-const handleValidateFailed = (message) => {
-    const input = document.querySelector('#url-input')
-    input.classList.add('border');
-    input.classList.add('border-danger');
-    input.classList.add('border-2');
-    errorMessage.classList.add('visible')
-    errorMessage.classList.remove('invisible')
-    errorMessage.textContent = message
-}
+  i18nInstance.init({
+    lng: 'ru',
+    resources
+  }).then(() => {
+    runStartRender(i18nInstance)
+  })
 
-const handleValidateSuccess = () => {
-    const input = document.querySelector('#url-input')
-    input.classList.remove('border');
-    input.classList.remove('border-danger');
-    input.classList.remove('border-2');
-    form.reset()
-    input.focus()
-    errorMessage.classList.remove('visible')
-    errorMessage.classList.add('invisible')
-    errorMessage.textContent = ''
-}
 
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    console.log(data.get('url'))
-    validate(data.get('url')) 
-    .then(_ => handleValidateSuccess())
-    .catch(message => handleValidateFailed(message))
-})
+  const state = {
+    posts: [],
+    uiState: {
+      validate: {
+        isValid: null,
+        message: null
+      }
+    }
+  }
 
-const validate = (url) => {
+  const watchedValidate = onChange(state.uiState.validate, (path, value) => {
+    console.log('path: ', path)
+    console.log('value: ', value)
+    handleValidateFailed(path, value, i18nInstance)
+  })
+
+  const arr = []
+  const validate = (url) => {
     return new Promise((resolve, error) => {
         if(arr.includes(url)) {
-            error('Адрес уже был добавлен!')
+            // error('Адрес уже был добавлен!')
+            watchedValidate.message = 'rssAlreadyAdded'
             return
         }
         urlSchema.validate({url})
@@ -50,8 +48,23 @@ const validate = (url) => {
             arr.push(url)
             resolve()
         })
-        .catch(_ => error('Неверный формат RSS ленты'))
+        // .catch(_ => error('Неверный формат RSS ленты'))
+        .catch(_ => {
+          watchedValidate.isValid = false
+          watchedValidate.message = 'invalidUrl'
+          // error(state.uiState.validate.message)
+        })
     })
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+
+    validate(data.get('url')) 
+    .then(_ => handleValidateSuccess(i18nInstance))
+    // .catch(message => handleValidateFailed(message))
+  })
 }
 
-
+runApp()

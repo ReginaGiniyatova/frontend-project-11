@@ -11,24 +11,24 @@
     <header class="container-fluid bg-dark p-5">
         <div class="row">
             <div class="col-md-10 mx-auto col-lg-8">
-                <h1 class="display-3 mb-0 text-light">
-                    RSS агрегатор
+                <h1 class="display-3 mb-0 text-light" id="title">
+                    <!-- RSS агрегатор -->
                 </h1>
-                <p class="lead text-light">
-                    Начните читать RSS сегодня! Это легко, это красиво.
+                <p class="lead text-light" id="description">
+                    <!-- Начните читать RSS сегодня! Это легко, это красиво. -->
                 </p>
                 <form id="form">
                     <div class="row">
                         <div class="col">
                             <div class="form-floating">
                                 <input class="form-control" autofocus name="url" id="url-input" required autocomplete="off" placeholder="Ссылка RSS">
-                            <label for="url-input" class="">Ссылка RSS</label>
+                            <label for="url-input" class="" id="label"></label>
                             </div>     
                         </div>
                         
                         <div class="col-auto">
-                            <button class="btn btn-primary btn-lg h-100 px-sm-5">
-                                Добавить
+                            <button class="btn btn-primary btn-lg h-100 px-sm-5" id="btnAdded">
+                                <!-- Добавить -->
                             </button>
                         </div> 
                     </div> 
