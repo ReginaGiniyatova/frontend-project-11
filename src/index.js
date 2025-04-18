@@ -162,6 +162,7 @@ function runApp() {
     e.preventDefault();
     const data = new FormData(form);
 
+    console.log(`Passing to validate url: ${data.get('url')}`);
     validate(data.get('url'))
       .then((url) => getDataPosts(url));
   });
