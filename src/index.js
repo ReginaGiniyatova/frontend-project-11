@@ -1,3 +1,7 @@
+// import 'bootstrap';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import onChange from 'on-change';
 import axios from 'axios';
 import { validateRssInput, runStartRender, renderRssPosts } from './watchers.js';
@@ -133,9 +137,11 @@ function runApp() {
           id: nanoId,
           title: item.querySelector('title').textContent,
           description: item.querySelector('description').textContent,
-          link: item.querySelector('link').textContent
+          link: item.querySelector('link').textContent,
+          visited: false,
         })
       });
+
 
       return ({
         nanoId,
