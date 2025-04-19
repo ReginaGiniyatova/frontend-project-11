@@ -142,7 +142,7 @@ function runApp() {
             setValidateFields(true, 'success');
             resolve(link);
           })
-          .catch((errorMesssage) => setValidateFields(false, errorMesssage));
+          .catch((errorMesssage) => setValidateFields(false, errorMesssage.message));
       })
       .catch(() => setValidateFields(false, 'invalidUrl'));
   });
