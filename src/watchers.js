@@ -1,3 +1,6 @@
+/* eslint no-unused-vars: "off" */
+/* eslint no-param-reassign: "off" */
+
 const form = document.querySelector('#form');
 const errorMessage = document.querySelector('#error_message');
 const modalTitle = document.querySelector('.modal-title');
