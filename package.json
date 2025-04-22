@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ivanblin/frontend-project-11.git"
+    "url": "git+https://github.com/ReginaGiniyatova/frontend-project-11.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ivanblin/frontend-project-11/issues"
+    "url": "https://github.com/ReginaGiniyatova/frontend-project-11/issues"
   },
-  "homepage": "https://github.com/Ivanblin/frontend-project-11#readme",
+  "homepage": "https://github.com/ReginaGiniyatova/frontend-project-11#readme",
   "devDependencies": {
     "@babel/core": "^7.10.3",
     "@babel/preset-env": "^7.10.3",
